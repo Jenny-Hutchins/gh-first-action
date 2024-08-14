@@ -34,6 +34,6 @@ jobs:
             sha: commitSha,
             state: 'success', // The status state: 'success', 'failure', or 'error'
             description: 'Automated status update',
-            context: 'test-passed', // The context of the status check
+            context: 'test-passed'
           });
 
