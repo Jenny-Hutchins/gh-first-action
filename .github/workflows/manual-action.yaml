@@ -31,7 +31,7 @@ jobs:
           await github.rest.checks.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            sha: commitSha,
+            head_sha: commitSha,
             status: 'completed', 
             conclusion: 'success',
             name: 'test-passed'
