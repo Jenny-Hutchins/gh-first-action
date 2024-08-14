@@ -33,7 +33,7 @@ jobs:
             repo: context.repo.repo,
             sha: commitSha,
             status: 'completed', 
-            conclusion: 'success'
+            conclusion: 'success',
             name: 'test-passed'
           });
 
