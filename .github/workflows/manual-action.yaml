@@ -28,7 +28,7 @@ jobs:
           const commitSha = pr.head.sha;
 
           // Update the status of the commit with the specified context
-          await github.rest.check.create({
+          await github.rest.checks.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             sha: commitSha,
