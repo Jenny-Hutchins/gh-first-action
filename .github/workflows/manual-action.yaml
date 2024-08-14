@@ -1,0 +1,39 @@
+name: Update Status
+
+on:
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: 'Pull Request number to update'
+        required: true
+        type: number
+
+jobs:
+  update-check-status:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Update PR Check Status
+      uses: actions/github-script@v6
+      with:
+        script: |
+          
+          // Fetch the pull request details
+          const { data: pr } = await github.rest.pulls.get({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            pull_number: 1
+          });
+
+          const commitSha = pr.head.sha;
+
+          // Update the status of the commit with the specified context
+          await github.rest.repos.createCommitStatus({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            sha: commitSha,
+            state: 'success', // The status state: 'success', 'failure', or 'error'
+            description: 'Automated status update',
+            context: 'test-passed', // The context of the status check
+          });
+
