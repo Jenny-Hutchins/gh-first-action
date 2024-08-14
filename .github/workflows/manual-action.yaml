@@ -28,12 +28,12 @@ jobs:
           const commitSha = pr.head.sha;
 
           // Update the status of the commit with the specified context
-          await github.rest.repos.createCommitStatus({
+          await github.check.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             sha: commitSha,
-            state: 'success', // The status state: 'success', 'failure', or 'error'
-            description: 'Automated status update',
-            context: 'test-passed'
+            status: 'completed', 
+            conclusion: 'success'
+            name: 'test-passed'
           });
 
