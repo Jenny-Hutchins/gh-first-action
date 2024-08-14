@@ -20,8 +20,8 @@ jobs:
           
           // Fetch the pull request details
           const { data: pr } = await github.rest.pulls.get({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
+            owner: ${{ github.repository_owner }},
+            repo: ${{ github.repository }},
             pull_number: 1
           });
 
@@ -29,8 +29,8 @@ jobs:
 
           // Update the status of the commit with the specified context
           await github.rest.repos.createCommitStatus({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
+            owner: ${{ github.repository_owner }},
+            repo: ${{ github.repository }},
             sha: commitSha,
             state: 'success', // The status state: 'success', 'failure', or 'error'
             description: 'Automated status update',
